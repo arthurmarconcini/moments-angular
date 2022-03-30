@@ -30,7 +30,6 @@ export class NewMomentComponent implements OnInit {
 
     await this.momentService.createMoment(formData).subscribe()
 
-
     // enviar para o service
 
     // exibir msg
