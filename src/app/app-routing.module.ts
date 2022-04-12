@@ -8,7 +8,6 @@ import { NewMomentComponent } from './components/pages/new-moment/new-moment.com
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'moments/new', component: NewMomentComponent },
-
   { path: 'moments/:id', component: MomentComponent },
   { path: 'about', component: AboutComponent },
 ];

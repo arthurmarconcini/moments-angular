@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
+
+import { MomentService } from 'src/app/services/moment.service';
+
+import { Moment } from 'src/app/Moment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-moment',
@@ -6,10 +13,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./moment.component.css']
 })
 export class MomentComponent implements OnInit {
+  moment?: Moment;
+  baseApiUrl = environment.baseApiUrl;
 
-  constructor() { }
+  faTimes = faTimes;
+  faEdit = faEdit
+
+  constructor(private momentService: MomentService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    //id que está na url
+    const id = Number(this.route.snapshot.paramMap.get('id'))
+
+    this.momentService
+      .getMoment(id)
+      .subscribe(item => this.moment = item.data
+    );
   }
 
 }
