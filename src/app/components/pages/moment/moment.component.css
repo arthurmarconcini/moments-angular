@@ -29,12 +29,45 @@ img {
 }
 
 .comments {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
   margin-bottom: 1em;
   padding: 1.5em 0;
+  width: 100%;
 }
 
 .about-moment h3,
 .actions h3,
 .comments {
   margin-bottom: 1em;
+}
+
+.comment-container {
+  border-bottom: 1px solid #EFEFEF;
+  padding: 1em 0;
+  text-align: left;
+}
+
+.comment {
+  font-size: .9em;
+}
+
+.author {
+  font-size: .8em;
+}
+
+.comment-form {
+  margin: 0 auto;
+}
+
+.comment-form form {
+  margin-top: 0.5em;
+  text-align: left;
+  max-width: 300px;
+  margin-left: 0;
+}
+
+.author span {
+  font-weight: bold;
 }

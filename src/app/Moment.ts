@@ -8,7 +8,7 @@ export interface Moment {
   comments?: [
     {
       text: string;
-      usernames: string
+      username: string
     }
   ]
 }

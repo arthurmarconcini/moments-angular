@@ -11,15 +11,44 @@
     <h3>
       Ações:
     </h3>
-    <a href="/moments/edit/{{moment.id}}" class="edit-btn">
+    <a routerLink="/moments/edit/{{moment.id}}" class="edit-btn">
       <fa-icon [icon]="faEdit"></fa-icon> Editar
     </a>
-    <button class="remove-btn">
+    <button class="remove-btn" (click)="removeHandler(moment.id!)">
       <fa-icon [icon]="faTimes"></fa-icon> Excluir
     </button>
   </div>
   <div class="comments">
-    <h3>Comentários<span>0</span></h3>
+    <h3>Comentários({{moment.comments!.length > 0 ? moment.comments!.length : 0}})</h3>
+    <div *ngIf="moment.comments!.length > 0; else noComments">
+      <div class="comment-container" *ngFor="let comment of moment.comments">
+        <p class="comment">{{comment.text}}</p>
+        <p class="author"><span>por:</span>{{ comment.username }}</p>
+      </div>
+    </div>
+    <ng-template #noComments>
+      <p>Não há comentários</p>
+    </ng-template>
+    <div class="comment-form">
+      <h3>Deixe um comentário:</h3>
+      <form [formGroup]="commentForm" #formDir="ngForm" (ngSubmit)="onSubmit(formDir)">
+        <div class="form-group">
+          <label for="text">Comentário</label>
+          <textarea formControlName="text" placeholder="O que você quer comentar?" required></textarea>
+          <div *ngIf="text.invalid && formDir.submitted" class="validation-error">
+            <p *ngIf="text.errors?.['required']">O texto é obrigatório.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="username">Nome:</label>
+          <input formControlName="username" type="text" placeholder="Digite o seu nome" required />
+          <div *ngIf="username.invalid && formDir.submitted" class="validation-error">
+            <p *ngIf="username.errors?.['required']">O nome é obrigatório.</p>
+          </div>
+        </div>
+        <input type="submit" value="Comentar!">
+      </form>
+    </div>
   </div>
 
 </div>
